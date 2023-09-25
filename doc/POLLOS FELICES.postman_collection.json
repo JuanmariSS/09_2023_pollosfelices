@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "9c2c1a8e-1016-4cb9-9458-15ee528f2945",
+		"name": "POLLOS FELICES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1059617"
+	},
+	"item": [
+		{
+			"name": "Camareros",
+			"item": [
+				{
+					"name": "Obtener camarero por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/camareros/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"camareros",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener listado camareros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/camareros?texto=hO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"camareros"
+							],
+							"query": [
+								{
+									"key": "texto",
+									"value": "hO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear camarero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"dni\": \"23443231P\",\r\n        \"nombre\": \"Agapito\",\r\n        \"apellido1\": \"Quesada\",\r\n        \"apellido2\": \"Gimeno\",\r\n        \"direccion\": {\r\n            \"direccion\": \"c/ Roble, 34\",\r\n            \"poblacion\": \"Santa Perpetua de Mogoda\",\r\n            \"codigoPostal\": \"08098\",\r\n            \"provincia\": \"Badalona\",\r\n            \"pais\": \"España\"\r\n        },\r\n        \"datosContacto\": {\r\n            \"telefono\": \"6098998233\",\r\n            \"fax\": null,\r\n            \"email\": \"agapito@hotmail.com\"\r\n        },\r\n        \"licenciaManipuladorAlimentos\": \"LMA671192348\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/camareros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"camareros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar camarero",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/camareros/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"camareros",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar camarero",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n        \"id\": 100,\r\n        \"dni\": \"46722323R\",\r\n        \"nombre\": \"Honorio_UPDATED\",\r\n        \"apellido1\": \"Martín_UPDATED\",\r\n        \"apellido2\": \"Salvador_UPDATED\",\r\n        \"direccion\": {\r\n            \"direccion\": \"Avda de los Pinos 45 2º 4ª_UPDATED\",\r\n            \"poblacion\": \"Santa Perpetua de Mogoda_UPDATED\",\r\n            \"codigoPostal\": \"08098_UPDATED\",\r\n            \"provincia\": \"Barcelona_UPDATED\",\r\n            \"pais\": \"España_UPDATED\"\r\n        },\r\n        \"datosContacto\": {\r\n            \"telefono\": \"93 2456776_UPDATED\",\r\n            \"fax\": null,\r\n            \"email\": \"honorio445@hotmail.com_UPDATED\"\r\n        },\r\n        \"licenciaManipuladorAlimentos\": \"LMA671192222_UPDATED\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/camareros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"camareros"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Obtener producto por codigo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener listado productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"nombre\": \"Gin Xoriguer\",\r\n    \"descripcion\": \"Deliciosa ginebra de la mejor calidad hecha en Menorca.\",\r\n    \"fechaAlta\": \"2022-09-30T22:00:00.000+00:00\",\r\n    \"precio\": 7.2,\r\n    \"categoria\": {\r\n        \"codigo\": null,\r\n        \"nombre\": \"LICOR\"\r\n    },\r\n    \"descatalogado\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"codigo\": 100,\r\n    \"nombre\": \"Vodka UPDATED\",\r\n    \"descripcion\": \"Delicioso Vodka de la mejor calidad con precio actualizado!\",\r\n    \"fechaAlta\": \"2022-09-30T22:00:00.000+00:00\",\r\n    \"precio\": 14.0,\r\n    \"categoria\": {\r\n        \"codigo\": null,\r\n        \"nombre\": \"LICOR\"\r\n    },\r\n    \"descatalogado\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Establecimientos",
+			"item": []
+		},
+		{
+			"name": "Categorias",
+			"item": []
+		}
+	]
+}
