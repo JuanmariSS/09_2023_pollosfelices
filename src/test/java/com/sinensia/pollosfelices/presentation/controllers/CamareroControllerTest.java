@@ -17,11 +17,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sinensia.pollosfelices.business.model.Camarero;
-import com.sinensia.pollosfelices.business.model.DatosContacto;
-import com.sinensia.pollosfelices.business.model.Direccion;
-import com.sinensia.pollosfelices.business.services.CamareroServices;
-import com.sinensia.pollosfelices.presentation.config.RespuestaErrorHttp;
+import com.sinensia.pollosfelices.backend.business.model.Camarero;
+import com.sinensia.pollosfelices.backend.business.model.DatosContacto;
+import com.sinensia.pollosfelices.backend.business.model.Direccion;
+import com.sinensia.pollosfelices.backend.business.services.CamareroServices;
+import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
+import com.sinensia.pollosfelices.backend.presentation.controllers.CamareroController;
 
 @WebMvcTest(controllers=CamareroController.class)
 public class CamareroControllerTest {
