@@ -50,11 +50,7 @@ public class EstablecimientoServicesImpl implements EstablecimientoServices {
 
 	@Override
 	public List<Establecimiento> getAll() {
-		
-		List<EstablecimientoPL> est = establecimientoPLRepository.findAll();
-		
-		System.out.println(est);
-		
+	
 		return establecimientoPLRepository.findAll().stream()
 				.map(x -> mapper.map(x, Establecimiento.class))
 				.collect(Collectors.toList());
