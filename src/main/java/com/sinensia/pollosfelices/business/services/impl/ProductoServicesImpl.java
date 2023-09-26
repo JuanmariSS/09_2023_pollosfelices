@@ -17,7 +17,7 @@ import com.sinensia.pollosfelices.integration.repositories.ProductoRepository;
 public class ProductoServicesImpl implements ProductoServices{
 
 	@Autowired
-	ProductoRepository productoRepository;
+	private ProductoRepository productoRepository;
 	
 	@Override
 	public Long create(Producto producto) {
