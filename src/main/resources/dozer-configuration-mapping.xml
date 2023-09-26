@@ -45,5 +45,15 @@
    	<class-a>com.sinensia.pollosfelices.backend.business.model.Cliente</class-a>
    	<class-b>com.sinensia.pollosfelices.backend.integration.model.ClientePL</class-b>
    </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.Pedido</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.PedidoPL</class-b>
+   </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.LineaPedido</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.LineaPedidoPL</class-b>
+   </mapping>
         
 </mappings>
