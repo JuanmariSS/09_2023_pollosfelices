@@ -81,5 +81,6 @@ INSERT INTO PRODUCTOS (CODIGO, NOMBRE, DESCRIPCION, FECHA_ALTA, PRECIO, DESCATAL
 (165,'Ensaimada', null, '2017-10-25', 2.7, FALSE, 11),
 (166,'Donut', null, '2017-10-25', 2.7, FALSE, 11),
 (167,'Madalena Integral', null, '2017-10-25', 2.7, FALSE, 11),
-(168,'Madalena Integral Pequeña', null, '2017-10-25', 1.5, FALSE, 11);
+(168,'Madalena Integral Pequeña', null, '2017-10-25', 1.5, FALSE, 11),
+(169,'Pastéis de Belem (2 piezas)', 'Deliciosos pastelitos traidos en helicoptero cada mañana desde Lisboa.', '2018-10-22', 3.5, FALSE, 11);
 
