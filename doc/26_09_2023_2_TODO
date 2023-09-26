@@ -1,0 +1,21 @@
+Implementar Cliente
+
+1.- Crear ClientePL y mapearlo contra la base de datos (creat tabla en schema.sql y un par de registros de prueba en data.sql)
+2.- Crear ClientePLRepository
+3.- Añadir instrucciones en "dozer-configuration-mapping.xml" de cómo se mapea clasea <---> claseb (nos basamos en ejemplos de Producto o Categoria)
+4.- Implementar ClienteServicesImpl (nos basamos en ProductoServicesImpl)
+5.- Crear controlador ClienteController
+6.- Hacemos test del controlador
+7.- Creamos colección en Postman
+
+Implementar Pedido
+
+1.- Crear PedidoPL y mapearlo contra la base de datos (creat tabla en schema.sql y un par de registros de prueba en data.sql)
+2.- Crear PedidoPLRepository
+3.- Añadir instrucciones en "dozer-configuration-mapping.xml" de cómo se mapea clasea <---> claseb (nos basamos en ejemplos de Producto o Categoria)
+4.- Implementar PedidoServicesImpl (nos basamos en ProductoServicesImpl)
+5.- Crear controlador PedidoController
+6.- Hacemos test del controlador
+7.- Creamos colección en Postman
+
+
