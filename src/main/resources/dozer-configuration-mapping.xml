@@ -40,5 +40,10 @@
    	<class-a>com.sinensia.pollosfelices.backend.business.model.Camarero</class-a>
    	<class-b>com.sinensia.pollosfelices.backend.integration.model.CamareroPL</class-b>
    </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.Cliente</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.ClientePL</class-b>
+   </mapping>
         
 </mappings>
