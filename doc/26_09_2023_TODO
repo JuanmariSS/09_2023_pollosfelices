@@ -1,0 +1,10 @@
+Implementar Establecimiento
+
+1.- Crear EstablecimientoPL y mapearlo contra la base de datos (creat tabla en schema.sql y un par de registros de prueba en data.sql)
+2.- Crear EstablecimientoPLRepository
+3.- Añadir instrucciones en "dozer-configuration-mapping.xml" de cómo se mapea clasea <---> claseb (nos basamos en ejemplos de Producto o Categoria)
+4.- Implementar EstablecimientoServicesImpl (nos basamos en ProductoServicesImpl)
+5.- Crear controlador EstablecimientoController
+6.- Hacemos test del controlador
+7.- Creamos colección en Postman
+
