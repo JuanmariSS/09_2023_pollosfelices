@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.sinensia.pollosfelices.backend.business.model.Producto;
+import com.sinensia.pollosfelices.backend.business.services.CategoriaServices;
 import com.sinensia.pollosfelices.backend.business.services.ProductoServices;
 import com.sinensia.pollosfelices.backend.presentation.controllers.ProductoController;
 
@@ -26,6 +27,9 @@ public class ProductoControllerTest {
 	
 	@MockBean
 	private ProductoServices productoServices;
+	
+	@MockBean
+	private CategoriaServices categoriaServices;
 	
 	@Test
 	void eliminamos_producto() throws Exception {
