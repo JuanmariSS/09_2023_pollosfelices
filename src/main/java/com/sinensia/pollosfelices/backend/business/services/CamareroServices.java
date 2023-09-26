@@ -15,13 +15,13 @@ public interface CamareroServices {
 	 * - Ya existe un camarero con el mismo DNI
 	 * 
 	 */
-	Long create(Camarero camarero);  	
-	
-	void update(Camarero camarero);
-	void delete(Long id);
+	Long create(Camarero camarero);
 	
 	Optional<Camarero> read(Long id);
 	Optional<Camarero> read(String dni);
+	
+	void update(Camarero camarero);
+	void delete(Long id);
 	
 	List<Camarero> getAll();
 	List<Camarero> getByNombreLikeIgnoreCase(String texto);

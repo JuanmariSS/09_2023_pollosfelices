@@ -49,18 +49,12 @@ public class ClienteControllerTest {
 	@Test
 	void pedimos_todos_los_clientes() throws Exception {
 		
-		// Arrange
-		
 		List<Cliente> clientes = Arrays.asList(cliente1, cliente2);
 		when(clienteServices.getAll()).thenReturn(clientes);
-		
-		// Act
-		
+	
 		MvcResult respuesta = miniPostman.perform(get("/clientes").contentType("application/json"))
 									.andExpect(status().isOk())
 									.andReturn();
-		
-		// Assert
 		
 		String responseBody = respuesta.getResponse().getContentAsString(StandardCharsets.UTF_8);
 		String clientesJSON = objectMapper.writeValueAsString(clientes);

@@ -9,15 +9,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
-
 import com.sinensia.pollosfelices.backend.business.model.Categoria;
 import com.sinensia.pollosfelices.backend.business.model.Producto;
 import com.sinensia.pollosfelices.backend.business.services.ProductoServices;
 
-@Service
-@Primary
 public class ProductoDummyServicesImpl implements ProductoServices{
 
 	private final Map<Long, Producto> PRODUCTOS = new HashMap<>();

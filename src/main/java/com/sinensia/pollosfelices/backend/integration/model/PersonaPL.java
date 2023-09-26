@@ -1,31 +1,49 @@
-package com.sinensia.pollosfelices.backend.business.model;
+package com.sinensia.pollosfelices.backend.integration.model;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Persona implements Serializable {
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Entity
+@Table(name="PERSONAS")
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class PersonaPL implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;				
+	@Id
+	@Column(name="CODIGO")
+	private Long id;
+	
 	private String dni;				
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	private Direccion direccion;
-	private DatosContacto datosContacto;
 	
-	public Persona() {
+	@Embedded
+	private DireccionPL direccion;
+	
+	@Embedded
+	private DatosContactoPL datosContacto;
+	
+	public PersonaPL() {
 		
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getDni() {
 		return dni;
 	}
@@ -57,20 +75,20 @@ public abstract class Persona implements Serializable {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
-	
-	public Direccion getDireccion() {
+
+	public DireccionPL getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(Direccion direccion) {
+	public void setDireccion(DireccionPL direccion) {
 		this.direccion = direccion;
 	}
 
-	public DatosContacto getDatosContacto() {
+	public DatosContactoPL getDatosContacto() {
 		return datosContacto;
 	}
 
-	public void setDatosContacto(DatosContacto datosContacto) {
+	public void setDatosContacto(DatosContactoPL datosContacto) {
 		this.datosContacto = datosContacto;
 	}
 
@@ -87,14 +105,14 @@ public abstract class Persona implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Persona other = (Persona) obj;
+		PersonaPL other = (PersonaPL) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2 + ", direccion=" + direccion + ", datosContacto=" + datosContacto + "]";
+		return "PersonaPL [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1
+				+ ", apellido2=" + apellido2 + ", direccion=" + direccion + ", datosContacto=" + datosContacto + "]";
 	}
-
+	
 }

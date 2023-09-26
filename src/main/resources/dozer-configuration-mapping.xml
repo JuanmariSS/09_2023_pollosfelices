@@ -15,5 +15,30 @@
    	<class-a>com.sinensia.pollosfelices.backend.business.model.Producto</class-a>
    	<class-b>com.sinensia.pollosfelices.backend.integration.model.ProductoPL</class-b>
    </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.DatosContacto</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.DatosContactoPL</class-b>
+   </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.Direccion</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.DireccionPL</class-b>
+   </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.Establecimiento</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.EstablecimientoPL</class-b>
+   </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.Persona</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.PersonaPL</class-b>
+   </mapping>
+   
+   <mapping>
+   	<class-a>com.sinensia.pollosfelices.backend.business.model.Camarero</class-a>
+   	<class-b>com.sinensia.pollosfelices.backend.integration.model.CamareroPL</class-b>
+   </mapping>
         
 </mappings>

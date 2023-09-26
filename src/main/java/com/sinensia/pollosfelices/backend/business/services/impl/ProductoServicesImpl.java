@@ -58,7 +58,7 @@ public class ProductoServicesImpl implements ProductoServices{
 		Long codigo = producto.getCodigo();
 		
 		if(codigo == null) {
-			throw new IllegalArgumentException("No se puede actualizar un producto que con código null.");
+			throw new IllegalArgumentException("No se puede actualizar un producto con código null.");
 		}
 		
 		boolean existe = productoPLRepository.existsById(codigo);

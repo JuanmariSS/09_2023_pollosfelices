@@ -7,16 +7,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
-
 import com.sinensia.pollosfelices.backend.business.model.Camarero;
 import com.sinensia.pollosfelices.backend.business.model.DatosContacto;
 import com.sinensia.pollosfelices.backend.business.model.Direccion;
 import com.sinensia.pollosfelices.backend.business.services.CamareroServices;
 
-@Service
-@Primary
 public class CamareroDummyServicesImpl implements CamareroServices{
 
 	private final Map<Long, Camarero> CAMAREROS = new HashMap<>();
