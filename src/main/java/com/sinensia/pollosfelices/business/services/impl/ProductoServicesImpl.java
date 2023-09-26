@@ -5,15 +5,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sinensia.pollosfelices.business.model.Categoria;
 import com.sinensia.pollosfelices.business.model.Producto;
 import com.sinensia.pollosfelices.business.services.ProductoServices;
+import com.sinensia.pollosfelices.integration.repositories.ProductoRepository;
 
 @Service
 public class ProductoServicesImpl implements ProductoServices{
 
+	@Autowired
+	ProductoRepository productoRepository;
+	
 	@Override
 	public Long create(Producto producto) {
 		// TODO Auto-generated method stub
@@ -40,8 +45,7 @@ public class ProductoServicesImpl implements ProductoServices{
 
 	@Override
 	public List<Producto> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return productoRepository.findAll();
 	}
 
 	@Override
