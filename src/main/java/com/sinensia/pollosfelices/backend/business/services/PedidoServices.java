@@ -9,7 +9,7 @@ public interface PedidoServices {
 
 	Long create(Pedido pedido);
 	
-	Optional<Pedido> read(Pedido pedido);
+	Optional<Pedido> read(Long numero);
 	
 	List<Pedido> getAll();
 	

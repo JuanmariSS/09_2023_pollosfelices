@@ -28,7 +28,7 @@ public class PedidoServicesImpl implements PedidoServices {
 	}
 
 	@Override
-	public Optional<Pedido> read(Pedido pedido) {
+	public Optional<Pedido> read(Long numero) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}

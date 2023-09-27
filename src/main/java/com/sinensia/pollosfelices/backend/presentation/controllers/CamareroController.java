@@ -57,53 +57,9 @@ public class CamareroController {
 		
 	}
 
-	/*
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getById(@PathVariable Long id) {
-		
-		// Aquí todavía tenemos más trabajo del que quisieramos..
-		// Si detectamos algo que no nos gusta y tenemos que resolver con una respuesta de error lo tenemos que resolver
-		// aquí mismo...
-		
-		Camarero camarero = camareroServices.read(id).orElse(null);
-		
-		if(camarero == null) {
-			return new ResponseEntity<>(new RespuestaErrorHttp("Ooops... No existe el camarero " + id), HttpStatus.NOT_FOUND);
-		} else {
-			return ResponseEntity.ok(camarero);
-		}
-	
-	}
-	*/
-	
-	/*
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getById(@PathVariable Long id) {
-		
-		try {
-		
-			Camarero camarero = camareroServices.read(id).orElse(null);
-		
-			if(camarero == null) {
-				return ResponseEntity.badRequest().body(new RespuestaErrorHttp("Ooops... No existe el camarero " + id));
-			} else {
-				return ResponseEntity.ok(camarero);
-			}
-		
-		} catch(Exception e) {
-			
-			return ResponseEntity.internalServerError().body(new RespuestaErrorHttp("Se ha producido un error. Estamos consternados."));
-		}
-		
-	}
-	*/
-	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody Camarero camarero, UriComponentsBuilder ucb){
-		
-		// 1.- Código 201 (created)
-		// 2.- Incluimos header Location con la URL de la ubicación de ese nuevo recurso
-		
+				
 		Long id = camareroServices.create(camarero);
 		
 		URI uri = ucb.path("/camareros/{id}").build(id);
@@ -128,31 +84,7 @@ public class CamareroController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@RequestBody Camarero camarero) {
-		
-		camareroServices.update(camarero);
-		
+		camareroServices.update(camarero);	
 	}
-	
-/*	
- 
- 	// NO NECESITAMOS GESTIÓN CENTRALIZADA DE EXCEPCIONES A NIVEL DE CONTROLADOR!!!
- 	// VAMOS A RESOLVERLO DE FORMA CENTRALIZADA!
-	
-	// ****************************************************************************
-	//
-	// Gestión centralizada de excepciones
-	//
-	// ****************************************************************************
-	
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<?> genericExceptionHandler (Exception ex) {
-		return ResponseEntity.internalServerError().body(new RespuestaErrorHttp("---> " + ex.getMessage()));
-	}
-	
-	@ExceptionHandler(IllegalStateException.class)
-	public ResponseEntity<?> illegalStateExceptionHandler(Exception ex) {
-		return ResponseEntity.badRequest().body(new RespuestaErrorHttp("---> " + ex.getMessage()));
-	}
-	
-*/
+
 }
