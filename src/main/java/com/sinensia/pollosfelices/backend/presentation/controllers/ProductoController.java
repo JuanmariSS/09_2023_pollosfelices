@@ -64,6 +64,8 @@ public class ProductoController {
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody Producto producto, UriComponentsBuilder ucb){
 		
+		
+		//TODO Comprobar traslado a capa de business de la comprobación existencia Categoria
 		Long codigoCategoria = producto.getCategoria().getCodigo();
 		
 		Optional<Categoria> optionalCategoria = categoriaServices.read(codigoCategoria);

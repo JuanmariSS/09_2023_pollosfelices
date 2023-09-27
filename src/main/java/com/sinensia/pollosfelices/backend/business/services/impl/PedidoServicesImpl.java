@@ -24,8 +24,23 @@ public class PedidoServicesImpl implements PedidoServices {
 	
 	@Override
 	public Long create(Pedido pedido) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(pedido.getNumero() != null) {
+			throw new IllegalArgumentException("No se puede crear un pedido que ya tiene número.");
+		}
+		
+		// TODO Comprobar existencia Camarero
+		// TODO Comprobar existencia Establecimiento
+		
+		Long numero = System.currentTimeMillis();
+		
+		pedido.setNumero(numero);
+		
+		PedidoPL pedidoPL = mapper.map(pedido, PedidoPL.class);
+		
+		pedidoPLRepository.save(pedidoPL);
+		
+		return numero;
 	}
 
 	@Override
