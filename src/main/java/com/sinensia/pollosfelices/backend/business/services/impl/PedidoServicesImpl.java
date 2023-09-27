@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sinensia.pollosfelices.backend.business.model.Pedido;
 import com.sinensia.pollosfelices.backend.business.services.PedidoServices;
+import com.sinensia.pollosfelices.backend.integration.model.PedidoPL;
 import com.sinensia.pollosfelices.backend.integration.repositories.PedidoPLRepository;
 
 @Service
@@ -29,8 +30,8 @@ public class PedidoServicesImpl implements PedidoServices {
 
 	@Override
 	public Optional<Pedido> read(Long numero) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		Optional<PedidoPL> optionalPL = pedidoPLRepository.findById(numero);
+		return optionalPL.isEmpty() ? Optional.empty() : Optional.of(mapper.map(optionalPL.get(), Pedido.class));	
 	}
 
 	@Override
