@@ -1,0 +1,53 @@
+// Consultas creadas automáticamente via Reflection gracias a una convención de nombres (Spring Data)
+	
+	List<Vehiculo> findByPrecioGreaterThan(double precioMinimo);
+	List<Vehiculo> findByPrecioLessThan(double precioMinimo);
+	List<Vehiculo> findBySiniestrado(boolean siniestrado);
+	List<Vehiculo> findByPrecioLessThanAndKilometrosLessThanOrderByPrecioDesc(double precio, int kilometros);
+	List<Vehiculo> findByFechaMatriculacionBetweenOrderByPrecioDesc(Date desde, Date hasta); 
+	
+	// Consultas con JPQL (Java Peresistence Query Language)
+	
+	@Query("SELECT v FROM Vehiculo v WHERE v.siniestrado = :estrellado")
+	List<Vehiculo> obtenerTodos(boolean estrellado);
+		
+	// Consultas que devuelven tablas de datos en forma de List<Object[]>
+	
+	@Query("SELECT v.marca, v.modelo, v.precio FROM Vehiculo v WHERE v.siniestrado = :estrellado")
+	List<Object[]> obtenerCosasVarias(boolean estrellado);
+	
+	// Consultas de actualización/inserción/eliminación
+	
+	@Modifying
+	@Query("UPDATE Vehiculo v SET v.precio = v.precio + (v.precio * :porcentaje /100)")
+	int modificarPrecios(double porcentaje);
+	
+	@Modifying
+	@Query("DELETE Vehiculo v WHERE v.siniestrado = true")
+	int eliminarVehiculosSiniestrados();
+	
+	// Consultas que obtienen datos agrupados
+	
+	@Query("SELECT v.motor, COUNT(v), AVG(v.precio), MAX(v.precio), MIN(v.precio) FROM Vehiculo v GROUP BY v.motor")
+	List<Object[]> getEstadisticasPorMotor();
+	
+	// Consultas en las que adaptamos los datos llevando a cabo operaciones
+	
+	@Query("SELECT UPPER(CONCAT(v.marca,' ', v.modelo,' (', v.precio,')')), v.kilometros FROM Vehiculo v")
+	List<Object[]> getDatosModificados();
+	
+	// Uso de coalesce (muy util)
+	
+	@Query("SELECT v.marca, COALESCE(v.modelo,'***** MODELO NO DISPONIBLE *****') FROM Vehiculo v")
+	List<Object[]> getListaVehiculosSinNulos();
+	
+	// Ejemplo de devolución directa de DTOs
+	
+	@Query("SELECT new com.sinensia.jpashowcase.model.basic.VehiculoDTO(v.marca, v.modelo, v.precio, v.siniestrado) FROM Vehiculo v")
+	List<VehiculoDTO> getVehiculosDTO();
+	
+	// Ejemplo de SQL nativo
+	
+	@Query(value="SELECT C1, C2 FROM VEHICULOS", nativeQuery = true)
+	List<Vehiculo> getAllNostalgico();
+	
