@@ -29,6 +29,8 @@ public class PedidoServicesImpl implements PedidoServices {
 			throw new IllegalArgumentException("No se puede crear un pedido que ya tiene número.");
 		}
 		
+		// TODO establecer el estado en NUEVO
+		
 		// TODO Comprobar existencia Camarero
 		// TODO Comprobar existencia Establecimiento
 		
@@ -56,6 +58,32 @@ public class PedidoServicesImpl implements PedidoServices {
 				.map(x -> mapper.map(x, Pedido.class))
 				.collect(Collectors.toList());
 		            
+	}
+
+	@Override
+	public void procesar(Long numero) {
+		// TODO Auto-generated method stub
+		
+		// Nota: Recomiemdo crear una @Query de tipo UPDATE (mirar JPAShowCase) para llevar a cabo la actualiación. 
+		
+	}
+
+	@Override
+	public void entregar(Long numero) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void servir(Long numero) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cancelar(Long numero) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

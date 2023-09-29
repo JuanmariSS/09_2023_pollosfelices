@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,21 +25,25 @@ public class ProductoPLRepositoryTest {
 	private ProductoPLRepository productoPLRepository;
 	
 	@Test
+	@Disabled
 	void findByPrecioBetweenTest() {
 		fail("Not implemented yet");
 	}
 	
 	@Test
+	@Disabled
 	void findByFechaAltaBetweenTest() {
 		fail("Not implemented yet");
 	}
 	
 	@Test
+	@Disabled
 	void findByDescatalogadoTrueTest() {
 		fail("Not implemented yet");
 	}
 	
 	@Test
+	@Disabled
 	void findByNombreLikeIgnoreCaseTest() {
 		fail("Not implemented yet");
 	}
@@ -66,11 +72,13 @@ public class ProductoPLRepositoryTest {
 	}
 	
 	@Test
+	@Disabled
 	void incrementarPreciosTestA() {
 		fail("Not implemented yet");
 	}
 	
 	@Test
+	@Disabled
 	void incrementarPreciosTestB() {
 		fail("Not implemented yet");
 	}
@@ -96,6 +104,7 @@ public class ProductoPLRepositoryTest {
 	}
 	
 	@Test
+	@Disabled
 	void getEstadisticaPrecioMedioTest() {
 		fail("Not implemented yet");
 	}
