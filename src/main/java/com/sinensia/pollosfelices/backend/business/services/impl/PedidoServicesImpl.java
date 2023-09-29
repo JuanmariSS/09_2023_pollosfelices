@@ -14,6 +14,8 @@ import com.sinensia.pollosfelices.backend.business.model.Pedido;
 import com.sinensia.pollosfelices.backend.business.services.PedidoServices;
 import com.sinensia.pollosfelices.backend.integration.model.EstadoPedidoPL;
 import com.sinensia.pollosfelices.backend.integration.model.PedidoPL;
+import com.sinensia.pollosfelices.backend.integration.repositories.CamareroPLRepository;
+import com.sinensia.pollosfelices.backend.integration.repositories.EstablecimientoPLRepository;
 import com.sinensia.pollosfelices.backend.integration.repositories.PedidoPLRepository;
 
 @Service
@@ -21,6 +23,12 @@ public class PedidoServicesImpl implements PedidoServices {
 
 	@Autowired
 	private PedidoPLRepository pedidoPLRepository;
+	
+	@Autowired
+	private CamareroPLRepository camareroPLRepository;
+	
+	@Autowired
+	private EstablecimientoPLRepository establecimientoPLRepository;
 	
 	@Autowired
 	private DozerBeanMapper mapper;
@@ -32,9 +40,17 @@ public class PedidoServicesImpl implements PedidoServices {
 			throw new IllegalArgumentException("No se puede crear un pedido que ya tiene número.");
 		}
 		
-		// TODO Comprobar existencia Camarero
-		// TODO Comprobar existencia Establecimiento
+		boolean existeCamarero = camareroPLRepository.existsById(pedido.getCamarero().getId());
+		boolean existeEstablecimiento = establecimientoPLRepository.existsById(pedido.getEstablecimiento().getCodigo());
 		
+		if(!existeCamarero) {
+			throw new IllegalArgumentException("No se puede crear el pedido. No existe el camarero " + pedido.getCamarero().getId());
+		}
+		
+		if(!existeEstablecimiento) {
+			throw new IllegalArgumentException("No se puede crear el pedido. No existe el establecimiento " + pedido.getEstablecimiento().getCodigo());
+		}
+	
 		Long numero = System.currentTimeMillis();
 		
 		pedido.setNumero(numero);
@@ -87,7 +103,7 @@ public class PedidoServicesImpl implements PedidoServices {
 		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (!estadoPedidoPL.equals(EstadoPedidoPL.EN_PROCESO)) {
-			throw new IllegalArgumentException("No se puede pasar a estado 'PENDIENTE_ENTREGA' desde el estado '" + estadoPedidoPL + "'");
+			throw new IllegalStateException("No se puede pasar a estado 'PENDIENTE_ENTREGA' desde el estado '" + estadoPedidoPL + "'");
 		}
 		
 		pedidoPLRepository.entregar(numero);
@@ -103,7 +119,7 @@ public class PedidoServicesImpl implements PedidoServices {
 		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (!estadoPedidoPL.equals(EstadoPedidoPL.PENDIENTE_ENTREGA)) {
-			throw new IllegalArgumentException("No se puede pasar a estado 'SERVIDO' desde el estado '" + estadoPedidoPL + "'");
+			throw new IllegalStateException("No se puede pasar a estado 'SERVIDO' desde el estado '" + estadoPedidoPL + "'");
 		}
 		
 		pedidoPLRepository.servir(numero);
@@ -119,7 +135,7 @@ public class PedidoServicesImpl implements PedidoServices {
 		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (estadoPedidoPL.equals(EstadoPedidoPL.CANCELADO) || estadoPedidoPL.equals(EstadoPedidoPL.SERVIDO)) {
-			throw new IllegalArgumentException("No se puede pasar a estado 'CANCELADO' desde el estado '" + estadoPedidoPL + "'");
+			throw new IllegalStateException("No se puede pasar a estado 'CANCELADO' desde el estado '" + estadoPedidoPL + "'");
 		}
 		
 		pedidoPLRepository.cancelar(numero);
