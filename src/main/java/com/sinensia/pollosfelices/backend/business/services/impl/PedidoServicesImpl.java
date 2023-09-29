@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.sinensia.pollosfelices.backend.business.model.EstadoPedido;
 import com.sinensia.pollosfelices.backend.business.model.Pedido;
 import com.sinensia.pollosfelices.backend.business.services.PedidoServices;
+import com.sinensia.pollosfelices.backend.integration.model.EstadoPedidoPL;
 import com.sinensia.pollosfelices.backend.integration.model.PedidoPL;
 import com.sinensia.pollosfelices.backend.integration.repositories.PedidoPLRepository;
 
@@ -29,14 +32,13 @@ public class PedidoServicesImpl implements PedidoServices {
 			throw new IllegalArgumentException("No se puede crear un pedido que ya tiene número.");
 		}
 		
-		// TODO establecer el estado en NUEVO
-		
 		// TODO Comprobar existencia Camarero
 		// TODO Comprobar existencia Establecimiento
 		
 		Long numero = System.currentTimeMillis();
 		
 		pedido.setNumero(numero);
+		pedido.setEstado(EstadoPedido.NUEVO);
 		
 		PedidoPL pedidoPL = mapper.map(pedido, PedidoPL.class);
 		
@@ -61,28 +63,82 @@ public class PedidoServicesImpl implements PedidoServices {
 	}
 
 	@Override
+	@Transactional
 	public void procesar(Long numero) {
-		// TODO Auto-generated method stub
+
+		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
 		
-		// Nota: Recomiemdo crear una @Query de tipo UPDATE (mirar JPAShowCase) para llevar a cabo la actualiación. 
+		if (optional.isEmpty()) {
+			throw new IllegalArgumentException("No existe el pedido número " + numero);
+		}
+		
+		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		
+		if (!estadoPedidoPL.equals(EstadoPedidoPL.NUEVO)) {
+			throw new IllegalArgumentException("No se puede pasar a estado 'EN_PROCESO' desde el estado '" + estadoPedidoPL + "'");
+		}
+		
+		pedidoPLRepository.procesar(numero);
 		
 	}
 
 	@Override
+	@Transactional
 	public void entregar(Long numero) {
-		// TODO Auto-generated method stub
+		
+		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		
+		if (optional.isEmpty()) {
+			throw new IllegalArgumentException("No existe el pedido número " + numero);
+		}
+		
+		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		
+		if (!estadoPedidoPL.equals(EstadoPedidoPL.EN_PROCESO)) {
+			throw new IllegalArgumentException("No se puede pasar a estado 'PENDIENTE_ENTREGA' desde el estado '" + estadoPedidoPL + "'");
+		}
+		
+		pedidoPLRepository.entregar(numero);
 		
 	}
 
 	@Override
+	@Transactional
 	public void servir(Long numero) {
-		// TODO Auto-generated method stub
+		
+		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		
+		if (optional.isEmpty()) {
+			throw new IllegalArgumentException("No existe el pedido número " + numero);
+		}
+		
+		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		
+		if (!estadoPedidoPL.equals(EstadoPedidoPL.PENDIENTE_ENTREGA)) {
+			throw new IllegalArgumentException("No se puede pasar a estado 'SERVIDO' desde el estado '" + estadoPedidoPL + "'");
+		}
+		
+		pedidoPLRepository.servir(numero);
 		
 	}
 
 	@Override
+	@Transactional
 	public void cancelar(Long numero) {
-		// TODO Auto-generated method stub
+		
+		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		
+		if (optional.isEmpty()) {
+			throw new IllegalArgumentException("No existe el pedido número " + numero);
+		}
+		
+		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		
+		if (estadoPedidoPL.equals(EstadoPedidoPL.CANCELADO) || estadoPedidoPL.equals(EstadoPedidoPL.SERVIDO)) {
+			throw new IllegalArgumentException("No se puede pasar a estado 'CANCELADO' desde el estado '" + estadoPedidoPL + "'");
+		}
+		
+		pedidoPLRepository.cancelar(numero);
 		
 	}
 
