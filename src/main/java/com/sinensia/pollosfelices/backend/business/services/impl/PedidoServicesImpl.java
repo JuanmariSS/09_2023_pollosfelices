@@ -66,16 +66,12 @@ public class PedidoServicesImpl implements PedidoServices {
 	@Transactional
 	public void procesar(Long numero) {
 
-		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		PedidoPL pedidoPL = getPedidoPL(numero);
 		
-		if (optional.isEmpty()) {
-			throw new IllegalArgumentException("No existe el pedido número " + numero);
-		}
-		
-		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (!estadoPedidoPL.equals(EstadoPedidoPL.NUEVO)) {
-			throw new IllegalArgumentException("No se puede pasar a estado 'EN_PROCESO' desde el estado '" + estadoPedidoPL + "'");
+			throw new IllegalStateException("No se puede pasar a estado 'EN_PROCESO' desde el estado '" + estadoPedidoPL + "'");
 		}
 		
 		pedidoPLRepository.procesar(numero);
@@ -86,13 +82,9 @@ public class PedidoServicesImpl implements PedidoServices {
 	@Transactional
 	public void entregar(Long numero) {
 		
-		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		PedidoPL pedidoPL = getPedidoPL(numero);
 		
-		if (optional.isEmpty()) {
-			throw new IllegalArgumentException("No existe el pedido número " + numero);
-		}
-		
-		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (!estadoPedidoPL.equals(EstadoPedidoPL.EN_PROCESO)) {
 			throw new IllegalArgumentException("No se puede pasar a estado 'PENDIENTE_ENTREGA' desde el estado '" + estadoPedidoPL + "'");
@@ -106,13 +98,9 @@ public class PedidoServicesImpl implements PedidoServices {
 	@Transactional
 	public void servir(Long numero) {
 		
-		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		PedidoPL pedidoPL = getPedidoPL(numero);
 		
-		if (optional.isEmpty()) {
-			throw new IllegalArgumentException("No existe el pedido número " + numero);
-		}
-		
-		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (!estadoPedidoPL.equals(EstadoPedidoPL.PENDIENTE_ENTREGA)) {
 			throw new IllegalArgumentException("No se puede pasar a estado 'SERVIDO' desde el estado '" + estadoPedidoPL + "'");
@@ -126,13 +114,9 @@ public class PedidoServicesImpl implements PedidoServices {
 	@Transactional
 	public void cancelar(Long numero) {
 		
-		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		PedidoPL pedidoPL = getPedidoPL(numero);
 		
-		if (optional.isEmpty()) {
-			throw new IllegalArgumentException("No existe el pedido número " + numero);
-		}
-		
-		EstadoPedidoPL estadoPedidoPL = optional.get().getEstado();
+		EstadoPedidoPL estadoPedidoPL = pedidoPL.getEstado();
 		
 		if (estadoPedidoPL.equals(EstadoPedidoPL.CANCELADO) || estadoPedidoPL.equals(EstadoPedidoPL.SERVIDO)) {
 			throw new IllegalArgumentException("No se puede pasar a estado 'CANCELADO' desde el estado '" + estadoPedidoPL + "'");
@@ -141,5 +125,21 @@ public class PedidoServicesImpl implements PedidoServices {
 		pedidoPLRepository.cancelar(numero);
 		
 	}
+	
+	// *********************************************************
+	//
+	// Private Methods
+	//
+	// *********************************************************
 
+	private PedidoPL getPedidoPL(Long numero) {
+		
+		Optional<PedidoPL> optional = pedidoPLRepository.findById(numero);
+		
+		if (optional.isEmpty()) {
+			throw new IllegalArgumentException("No existe el pedido número " + numero);
+		}
+		
+		return optional.get();
+	}
 }
