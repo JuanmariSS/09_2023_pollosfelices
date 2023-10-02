@@ -9,6 +9,7 @@
    <mapping>
    	<class-a>com.sinensia.pollosfelices.backend.business.model.Categoria</class-a>
    	<class-b>com.sinensia.pollosfelices.backend.integration.model.CategoriaPL</class-b>
+ 
    </mapping>
    
    <mapping>

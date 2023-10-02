@@ -104,9 +104,45 @@ class PedidoServicesImplTest {
 	}
 
 	@Test
-	@Disabled
-	void testProcesar() {
-		fail("Not yet implemented");
+	void procesar_ok() {
+		
+		pedidoPL.setNumero(100L);
+		pedidoPL.setEstado(EstadoPedidoPL.NUEVO);
+		
+		when(pedidoPLRepository.findById(100L)).thenReturn(Optional.of(pedidoPL));
+		
+		pedidoServicesImpl.procesar(100L);
+		
+		verify(pedidoPLRepository, times(1)).procesar(100L);
+	}
+	
+	@Test
+	void procesar_numero_no_econtrado() {
+		
+		pedidoPL.setNumero(200L);
+		when(pedidoPLRepository.findById(200L)).thenReturn(Optional.empty());
+		
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			pedidoServicesImpl.procesar(200L);
+		});
+		
+		assertEquals("No existe el pedido número 200", exception.getMessage());
+	}
+	
+	@Test
+	void procesar_estado_no_permitido() {
+		
+		pedidoPL.setNumero(100L);
+		pedidoPL.setEstado(EstadoPedidoPL.CANCELADO);
+		
+		when(pedidoPLRepository.findById(100L)).thenReturn(Optional.of(pedidoPL));
+		
+		Exception exception = assertThrows(IllegalStateException.class, () -> {
+			pedidoServicesImpl.procesar(100L);
+		});
+		
+		assertEquals("No se puede pasar a estado 'EN_PROCESO' desde el estado 'CANCELADO'", exception.getMessage());
+		
 	}
 
 	@Test

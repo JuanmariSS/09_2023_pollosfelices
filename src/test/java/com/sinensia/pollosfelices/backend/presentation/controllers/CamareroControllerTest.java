@@ -1,4 +1,4 @@
-package com.sinensia.pollosfelices.presentation.controllers;
+package com.sinensia.pollosfelices.backend.presentation.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -22,7 +22,6 @@ import com.sinensia.pollosfelices.backend.business.model.DatosContacto;
 import com.sinensia.pollosfelices.backend.business.model.Direccion;
 import com.sinensia.pollosfelices.backend.business.services.CamareroServices;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
-import com.sinensia.pollosfelices.backend.presentation.controllers.CamareroController;
 
 @WebMvcTest(controllers=CamareroController.class)
 public class CamareroControllerTest {

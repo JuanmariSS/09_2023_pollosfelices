@@ -1,4 +1,4 @@
-package com.sinensia.pollosfelices.presentation.controllers;
+package com.sinensia.pollosfelices.backend.presentation.controllers;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.sinensia.pollosfelices.backend.business.model.Producto;
 import com.sinensia.pollosfelices.backend.business.services.CategoriaServices;
 import com.sinensia.pollosfelices.backend.business.services.ProductoServices;
-import com.sinensia.pollosfelices.backend.presentation.controllers.ProductoController;
 
 @WebMvcTest(controllers=ProductoController.class)
 public class ProductoControllerTest {
