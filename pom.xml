@@ -70,6 +70,24 @@
 			<artifactId>dozer</artifactId>
 			<version>5.5.1</version>
 		</dependency>
+		
+		<!-- JSP & JSTL -->
+		
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+  			<groupId>jakarta.servlet.jsp.jstl</groupId>
+  			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+  		</dependency>
+  		
+		<dependency>
+  			<groupId>org.glassfish.web</groupId>
+  			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		</dependency>
 			
 	</dependencies>
 
