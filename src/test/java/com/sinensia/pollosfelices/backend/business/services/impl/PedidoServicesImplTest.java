@@ -119,10 +119,9 @@ class PedidoServicesImplTest {
 	@Test
 	void procesar_numero_no_econtrado() {
 		
-		pedidoPL.setNumero(200L);
-		when(pedidoPLRepository.findById(200L)).thenReturn(Optional.empty());
+		when(pedidoPLRepository.findById(200L)).thenReturn(Optional.empty());			
 		
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> { 
 			pedidoServicesImpl.procesar(200L);
 		});
 		
