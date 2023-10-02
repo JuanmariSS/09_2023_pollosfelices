@@ -1,4 +1,4 @@
-package com.sinensia.pollosfelices.backend.presentation.controllers;
+package com.sinensia.pollosfelices.backend.presentation.api.restcontrollers;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

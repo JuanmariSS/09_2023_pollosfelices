@@ -1,4 +1,4 @@
-package com.sinensia.pollosfelices.backend.presentation.appcontrollers;
+package com.sinensia.pollosfelices.backend.presentation.app.controllers;
 
 import java.util.List;
 
