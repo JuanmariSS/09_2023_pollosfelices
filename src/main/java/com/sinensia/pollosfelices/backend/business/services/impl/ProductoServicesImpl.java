@@ -1,6 +1,7 @@
 package com.sinensia.pollosfelices.backend.business.services.impl;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sinensia.pollosfelices.backend.business.model.Categoria;
 import com.sinensia.pollosfelices.backend.business.model.Producto;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto1DTO;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto2DTO;
 import com.sinensia.pollosfelices.backend.business.services.ProductoServices;
 import com.sinensia.pollosfelices.backend.integration.model.CategoriaPL;
 import com.sinensia.pollosfelices.backend.integration.model.ProductoPL;
@@ -28,6 +31,9 @@ public class ProductoServicesImpl implements ProductoServices{
 	
 	@Autowired
 	private DozerBeanMapper mapper;
+	
+	@Autowired
+	private SimpleDateFormat sdf;
 	
 	@Override
 	@Transactional
@@ -181,6 +187,20 @@ public class ProductoServicesImpl implements ProductoServices{
 		return mapaResultados;
 	}
 	
+	@Override
+	public List<Producto1DTO> getProducto1DTOs() {
+		return productoPLRepository.getProductos1DTO();
+	}
+
+	@Override
+	public List<Producto2DTO> getProducto2DTOs() {
+	
+		return productoPLRepository.getProductos2DTO().stream()
+				.map(x -> new Producto2DTO((String )x[0], sdf.format((Date) x[1])))
+				.collect(Collectors.toList());
+		
+	}
+	
 	// *********************************************************
 	//
 	// Private Methods
@@ -193,4 +213,5 @@ public class ProductoServicesImpl implements ProductoServices{
 				.map(x -> mapper.map(x, Producto.class))
 				.collect(Collectors.toList());
 	}
+
 }

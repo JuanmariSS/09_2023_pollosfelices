@@ -21,6 +21,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.sinensia.pollosfelices.backend.business.model.Categoria;
 import com.sinensia.pollosfelices.backend.business.model.Producto;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto1DTO;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto2DTO;
 import com.sinensia.pollosfelices.backend.business.services.CategoriaServices;
 import com.sinensia.pollosfelices.backend.business.services.ProductoServices;
 import com.sinensia.pollosfelices.backend.presentation.config.PresentationException;
@@ -101,6 +103,16 @@ public class ProductoController {
 		
 		productoServices.update(producto);
 		
+	}
+	
+	@GetMapping("/dto1")
+	public List<Producto1DTO> getProductos1DTO(){
+		return productoServices.getProducto1DTOs();
+	}
+	
+	@GetMapping("/dto2")
+	public List<Producto2DTO> getProductos2DTO(){
+		return productoServices.getProducto2DTOs();
 	}
 	
 }

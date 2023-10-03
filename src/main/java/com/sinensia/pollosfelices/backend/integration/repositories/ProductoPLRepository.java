@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto1DTO;
 import com.sinensia.pollosfelices.backend.integration.model.CategoriaPL;
 import com.sinensia.pollosfelices.backend.integration.model.ProductoPL;
 
@@ -47,5 +48,11 @@ public interface ProductoPLRepository extends JpaRepository<ProductoPL, Long>{
 			   + "GROUP BY C.ID "
 			   + "ORDER BY C.ID ", nativeQuery=true)
 	List<Object[]> getEstadisticaPrecioMedio();
+	
+	@Query("SELECT new com.sinensia.pollosfelices.backend.business.model.dtos.Producto1DTO(CONCAT(p.nombre, ' [', p.categoria.nombre,']'), p.precio) FROM ProductoPL p")
+	List<Producto1DTO> getProductos1DTO();
+	
+	@Query("SELECT p.nombre, p.fechaAlta FROM ProductoPL p")
+	List<Object[]> getProductos2DTO();
 	
 }

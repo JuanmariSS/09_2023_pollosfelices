@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import com.sinensia.pollosfelices.backend.business.model.Categoria;
 import com.sinensia.pollosfelices.backend.business.model.Producto;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto1DTO;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Producto2DTO;
 
 public interface ProductoServices {
 
@@ -80,5 +82,15 @@ public interface ProductoServices {
 	Map<Categoria, Integer> getEstadisticaNumeroProductosByCategoria();
 	Map<Categoria, Double> getEstadisticaPrecioMedioProductosByCategoria();
 	
+	// *********************************************************
+	//
+	// DTOs
+	//
+	// *********************************************************
+	
+	List<Producto1DTO> getProducto1DTOs();
+	
+	List<Producto2DTO> getProducto2DTOs();
+		
 
 }
