@@ -1,0 +1,12 @@
+- Vamos a completar todos los métodos de ProductoServices pendientes.... 
+
+Para ello hemos de crear métodos nuevos en el repositorio.
+
+- Vamos a resolver la forma de mirar si un camarero existe por DNI
+
+// TODO Mirar si existe por DNI!
+
+- Vamos a resolver la form a de obtener un camararo por DNI
+
+- Vamos a implementar getByNombreLikeIgnoreCase() de CamareroServicesImpl
+

@@ -1,6 +1,8 @@
 package com.sinensia.pollosfelices.backend.business.services.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sinensia.pollosfelices.backend.business.model.Categoria;
 import com.sinensia.pollosfelices.backend.business.model.Producto;
 import com.sinensia.pollosfelices.backend.business.services.ProductoServices;
+import com.sinensia.pollosfelices.backend.integration.model.CategoriaPL;
 import com.sinensia.pollosfelices.backend.integration.model.ProductoPL;
 import com.sinensia.pollosfelices.backend.integration.repositories.ProductoPLRepository;
 
@@ -89,40 +92,35 @@ public class ProductoServicesImpl implements ProductoServices{
 
 	@Override
 	public List<Producto> getAll() {
-	
-		return productoPLRepository.findAll().stream()
-				.map(x -> mapper.map(x, Producto.class))
-				.collect(Collectors.toList());
+		return convertProductosPLToProductos(productoPLRepository.findAll());
 	}
 
 	@Override
 	public List<Producto> getBetweenPriceRange(double min, double max) {
-		// TODO Auto-generated method stub
-		return null;
+		return convertProductosPLToProductos(productoPLRepository.findByPrecioBetween(min, max));
 	}
 
 	@Override
 	public List<Producto> getBetweenDates(Date desde, Date hasta) {
-		// TODO Auto-generated method stub
-		return null;
+		return convertProductosPLToProductos(productoPLRepository.findByFechaAltaBetween(desde, hasta));
 	}
 
 	@Override
 	public List<Producto> getDescatalogados() {
-		// TODO Auto-generated method stub
-		return null;
+		return convertProductosPLToProductos(productoPLRepository.findByDescatalogadoTrue());
 	}
-
+  
 	@Override
 	public List<Producto> getByNombreLikeIgnoreCase(String texto) {
-		// TODO Auto-generated method stub
-		return null;
+		return convertProductosPLToProductos(productoPLRepository.findByNombreLikeIgnoreCase("%" + texto + "%"));
 	}
 
 	@Override
 	public List<Producto> getByCategoria(Categoria categoria) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CategoriaPL categoriaPL = mapper.map(categoria, CategoriaPL.class);
+	
+		return convertProductosPLToProductos(productoPLRepository.findByCategoria(categoriaPL));
 	}
 
 	@Override
@@ -132,26 +130,67 @@ public class ProductoServicesImpl implements ProductoServices{
 
 	@Override
 	public void incrementarPrecio(List<Producto> productos, double porcentaje) {
-		// TODO Auto-generated method stub
+		
+		List<ProductoPL> productosPL = productos.stream()
+				.map(x -> mapper.map(x, ProductoPL.class))
+				.collect(Collectors.toList());
+		
+		productoPLRepository.incrementarPrecios(productosPL, porcentaje);
 		
 	}
 
 	@Override
 	public void incrementarPrecio(long[] codigos, double porcentaje) {
-		// TODO Auto-generated method stub
-		
+		productoPLRepository.incrementarPrecios(codigos, porcentaje);
 	}
 
 	@Override
 	public Map<Categoria, Integer> getEstadisticaNumeroProductosByCategoria() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Object[]> resultados = productoPLRepository.getEstadisticaNumeroProductos();
+		
+		Map<Categoria, Integer> mapaResultados = new HashMap<>();;
+		
+		resultados.stream().forEach(x -> {
+			Categoria categoria = new Categoria();
+			categoria.setCodigo((Long) x[0]);
+			categoria.setNombre((String) x[1]);
+			mapaResultados.put(categoria, ((Long) x[2]).intValue());
+		});
+		
+		return mapaResultados;
 	}
 
 	@Override
 	public Map<Categoria, Double> getEstadisticaPrecioMedioProductosByCategoria() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Object[]> resultados = productoPLRepository.getEstadisticaPrecioMedio();
+		
+		Map<Categoria, Double> mapaResultados = new HashMap<>();;
+		
+		resultados.stream().forEach(x -> {
+			Categoria categoria = new Categoria();
+			categoria.setCodigo((Long) x[0]);
+			categoria.setNombre((String) x[1]);
+			BigDecimal precioMediAsBigDecimal = (BigDecimal) x[2];
+			Double precioMedio = precioMediAsBigDecimal != null ? precioMediAsBigDecimal.doubleValue() : null;
+			precioMedio = precioMedio != null ? Math.round(precioMedio * 100.0) / 100.0 : null;
+			mapaResultados.put(categoria, precioMedio);
+		});
+		
+		return mapaResultados;
 	}
 	
+	// *********************************************************
+	//
+	// Private Methods
+	//
+	// *********************************************************
+	
+	private List<Producto> convertProductosPLToProductos(List<ProductoPL> productosPL){
+		
+		return productosPL.stream()
+				.map(x -> mapper.map(x, Producto.class))
+				.collect(Collectors.toList());
+	}
 }

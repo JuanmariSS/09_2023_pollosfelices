@@ -1,4 +1,4 @@
-package com.sinensia.pollosfelices.presentation.controllers;
+package com.sinensia.pollosfelices.backend.presentation.api.restcontrollers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -26,7 +26,6 @@ import com.sinensia.pollosfelices.backend.business.model.Direccion;
 import com.sinensia.pollosfelices.backend.business.model.Establecimiento;
 import com.sinensia.pollosfelices.backend.business.services.EstablecimientoServices;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
-import com.sinensia.pollosfelices.backend.presentation.controllers.EstablecimientoController;
 
 @WebMvcTest(controllers=EstablecimientoController.class)
 public class EstablecimientoControllerTest {

@@ -1,4 +1,4 @@
-package com.sinensia.pollosfelices.presentation.controllers;
+package com.sinensia.pollosfelices.backend.presentation.api.restcontrollers;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +24,6 @@ import com.sinensia.pollosfelices.backend.business.model.DatosContacto;
 import com.sinensia.pollosfelices.backend.business.model.Direccion;
 import com.sinensia.pollosfelices.backend.business.services.ClienteServices;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
-import com.sinensia.pollosfelices.backend.presentation.controllers.ClienteController;
 
 @WebMvcTest(controllers=ClienteController.class)
 public class ClienteControllerTest {
