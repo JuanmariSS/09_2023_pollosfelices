@@ -19,4 +19,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+## _Dependencias de JSTL_ ##
 
+		<dependency>
+  			<groupId>jakarta.servlet.jsp.jstl</groupId>
+  			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+  		</dependency>
+  		
+		<dependency>
+  			<groupId>org.glassfish.web</groupId>
+  			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		</dependency>
