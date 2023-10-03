@@ -1,7 +1,9 @@
 package com.sinensia.pollosfelices.backend.presentation.api.restcontrollers;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.sinensia.pollosfelices.backend.business.model.EstadoPedido;
 import com.sinensia.pollosfelices.backend.business.model.Pedido;
 import com.sinensia.pollosfelices.backend.business.services.PedidoServices;
 import com.sinensia.pollosfelices.backend.presentation.config.PresentationException;
@@ -52,6 +55,14 @@ public class PedidoController {
 		URI uri = ucb.path("/pedidos/{numero}").build(numero);
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@GetMapping("/estados")
+	public List<String> getListaEstados(){
+		
+		return Arrays.stream(EstadoPedido.values())
+				.map(x -> x.toString())
+				.collect(Collectors.toList());
 	}
 	
 }
