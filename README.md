@@ -11,3 +11,12 @@
 
 - http://localhost:8080/h2-console
 
+## _Dependencias de JSP_ ##
+		
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
