@@ -16,19 +16,21 @@ public class LogAspectConfig {
 	@Before(value="execution(* com.sinensia.pollosfelices.backend.presentation.controllers.*.*(..))")
 	public void logPresentationLayer(JoinPoint joinPoint) {
 		
-		// TODO 1 sacar el nombre de la clase
-		// TODO 2 sacar el nombre del método
+		String nombreClase = joinPoint.getTarget().getClass().getSimpleName();
+		String nombreMetodo = joinPoint.getSignature().getName();
+	
+		logger.info("Invocado método({}) de la clase {}", nombreMetodo, nombreClase);
 		
-		String nombreClase = "ClaseTal";
-		String nombreMetodo = "hazEsto";
-		
-		logger.info("Invocado método {} de la clase {}", nombreMetodo, nombreClase);
-		
-		// TODO 4 Advanced! Mostrar los argumentos que se están pasando a los métodos...
 	}
 	
-	// TODO 3 Interceptar ejecución de cualquier método de business para hacer lo mismo...
+	@Before(value="execution(* com.sinensia.pollosfelices.backend.business.services.impl.*.*(..))")
+	public void logBusinessLayer(JoinPoint joinPoint) {
+		
+		String nombreClase = joinPoint.getTarget().getClass().getSimpleName();
+		String nombreMetodo = joinPoint.getSignature().getName();
 	
-	
-	
+		logger.info("Invocado método({}) de la clase {}", nombreMetodo, nombreClase);
+		
+	}
+
 }
