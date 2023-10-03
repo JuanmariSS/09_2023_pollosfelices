@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PollosfelicesApplication {
 
-	// PRUENA PULL-REQUEST
+	// Realizamos PULL-REQUEST!
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PollosfelicesApplication.class, args);
