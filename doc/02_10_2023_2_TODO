@@ -1,1 +1,35 @@
-Hacemos la "mudanza" de todas las páginas JSP
+1.- Hacemos la "mudanza" de todas las páginas JSP
+
+2.- El cliente me pide un end-point (API REST) para obtener la lista de estados de los pedidos
+
+3.- El cliente me pide listados (API REST) de DTOs para Producto
+
+	- v1: 
+	
+		nombre (Categoria) ---> String
+		precio             ---> Double
+		
+		ejemplo:
+		
+		           NOBRE                 PRECIO
+		===============================+=======
+		Cocacola Zero 33cl (REFRESCOS)   2.4
+		===============================+========
+		Patatas Bravas(TAPA)             7.5
+		===============================+========
+
+      - v2:
+      
+      	nombre (*)         ----> String
+      	fechaAlta          ----> String
+      	
+      			      NOBRE                 FECHA ALTA
+		===============================+==============
+		Cocacola Zero 33cl               "21/12/2010"
+		===============================+==============
+		Patatas Bravas(*)                "08/10/2011"
+		===============================+==============
+		
+		Los productos descatalogados se muestran con asterisco!
+      	
+      	
