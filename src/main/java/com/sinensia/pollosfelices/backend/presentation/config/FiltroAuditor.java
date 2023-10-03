@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class FiltroInterceptor implements Filter {
+public class FiltroAuditor implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -39,5 +39,4 @@ public class FiltroInterceptor implements Filter {
 	// 11      129344399    GET  10.250.2.5   /productos/45     404           17
 	//
 	
-
 }
