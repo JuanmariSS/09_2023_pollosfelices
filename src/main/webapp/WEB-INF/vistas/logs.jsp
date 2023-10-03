@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<jsp:include page="header.jsp"/>
 		<h2>Lista de Productos</h2>
-		<table class="table">
+		<table>
 			<thead>
 				<tr>
 					<th>Código</th>
@@ -27,7 +27,7 @@
 					<td>${producto.nombre}</td>
 					<td>${producto.descripcion}</td>
 					<td><fmt:formatDate pattern="dd/MM/yyyy" value="${producto.fechaAlta}"/></td>
-					<td>
+					<td style="text-align:center;">
 						<c:if test="${producto.descatalogado}"><span style="color:red;">descatalogado</span></c:if>
 					</td>
 				</tr>
