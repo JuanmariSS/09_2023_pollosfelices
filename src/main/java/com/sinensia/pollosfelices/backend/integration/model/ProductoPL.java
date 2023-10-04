@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -16,8 +17,9 @@ import jakarta.persistence.TemporalType;
 @Table(name="PRODUCTOS")
 public class ProductoPL implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
+	@GeneratedValue(generator="PRODUCTO_SEQ")
 	private Long codigo;
 	
 	private String nombre;

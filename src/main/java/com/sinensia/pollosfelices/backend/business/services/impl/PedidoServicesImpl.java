@@ -37,7 +37,7 @@ public class PedidoServicesImpl implements PedidoServices {
 	public Long create(Pedido pedido) {
 		
 		if(pedido.getNumero() != null) {
-			throw new IllegalArgumentException("No se puede crear un pedido que ya tiene número.");
+			throw new IllegalStateException("No se puede crear un pedido que ya tiene número.");
 		}
 		
 		boolean existeCamarero = camareroPLRepository.existsById(pedido.getCamarero().getId());

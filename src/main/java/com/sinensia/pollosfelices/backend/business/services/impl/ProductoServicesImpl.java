@@ -40,18 +40,14 @@ public class ProductoServicesImpl implements ProductoServices{
 	public Long create(Producto producto) {
 		
 		if(producto.getCodigo() != null) {
-			throw new IllegalArgumentException("No se puede crear un producto que ya tiene código.");
+			throw new IllegalStateException("No se puede crear un producto que ya tiene código.");
 		}
-		
-		Long codigo = System.currentTimeMillis();
-		
-		producto.setCodigo(codigo);
 		
 		ProductoPL productoPL = mapper.map(producto, ProductoPL.class);
 		
-		productoPLRepository.save(productoPL);
+		ProductoPL createdProductoPL = productoPLRepository.save(productoPL);
 		
-		return codigo;
+		return createdProductoPL.getCodigo();
 	}
 
 	@Override

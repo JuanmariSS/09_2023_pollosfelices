@@ -28,7 +28,7 @@ public class EstablecimientoServicesImpl implements EstablecimientoServices {
 	public Long create(Establecimiento establecimiento) {
 		
 		if(establecimiento.getCodigo() != null) {
-			throw new IllegalArgumentException("No se puede crear un establecimiento que ya tiene código.");
+			throw new IllegalStateException("No se puede crear un establecimiento que ya tiene código.");
 		}
 		
 		Long codigo = System.currentTimeMillis();
