@@ -17,11 +17,17 @@ public class FiltroAuditor implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-	
-		request.setAttribute("id", System.currentTimeMillis());
+		
+		//Long startTime = System.nanoTime();
+		
+		Long id = System.currentTimeMillis();
+		
+		request.setAttribute("id", id);
 		
 		chain.doFilter(request, response);
 	
+		//Long elapsedTime = System.nanoTime() - startTime;
+		
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request; 
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		
@@ -29,7 +35,10 @@ public class FiltroAuditor implements Filter {
 		String path = httpServletRequest.getRequestURL().toString();
 		String method = httpServletRequest.getMethod();
 		
-		System.err.println("REQUEST: " + method + " " + ip + " " + path   + " RESPONSE: " + httpServletResponse.getStatus());
+		Long entrada = (Long) request.getAttribute("id");
+		Long tiempoTranscurrido = System.currentTimeMillis() - entrada;
+		
+		System.err.println("REQUEST: " + method + " " + ip + " " + path   + " RESPONSE: " + httpServletResponse.getStatus() + " " + tiempoTranscurrido);
 		
 	}
 	
