@@ -14,7 +14,7 @@ public class DozerConfig {
 		
 		DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 		
-		List<String> mappingFiles = List.of("dozer-configuration-mapping.xml");
+		List<String> mappingFiles = List.of("dozer-configuration-mapping.xml","dozer-configuration-mapping_auditoria.xml");
 		
 		dozerBeanMapper.setMappingFiles(mappingFiles);
 	

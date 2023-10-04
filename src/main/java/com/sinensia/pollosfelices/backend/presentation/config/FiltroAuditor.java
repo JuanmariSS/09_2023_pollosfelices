@@ -1,8 +1,13 @@
 package com.sinensia.pollosfelices.backend.presentation.config;
 
 import java.io.IOException;
+import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.sinensia.pollosfelices.backend.auditoria.business.model.RequestLog;
+import com.sinensia.pollosfelices.backend.auditoria.business.services.RequestLogServices;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -11,41 +16,37 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.Transactional;
 
 @Component
 public class FiltroAuditor implements Filter {
 
+	@Autowired
+	private RequestLogServices requestLogServices;
+	
 	@Override
+	@Transactional
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		//Long startTime = System.nanoTime();
-		
-		Long id = System.currentTimeMillis();
-		
-		request.setAttribute("id", id);
+		Date entrada = new Date();
 		
 		chain.doFilter(request, response);
 	
-		//Long elapsedTime = System.nanoTime() - startTime;
-		
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request; 
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		
-		String ip = httpServletRequest.getRemoteAddr();
-		String path = httpServletRequest.getRequestURL().toString();
-		String method = httpServletRequest.getMethod();
+		RequestLog requestLog = new RequestLog();
+		requestLog.setTimeStamp(entrada);
+		requestLog.setIp(httpServletRequest.getRemoteAddr());
+		requestLog.setResource(httpServletRequest.getRequestURL().toString());
+		requestLog.setMethod(httpServletRequest.getMethod());
 		
-		Long entrada = (Long) request.getAttribute("id");
-		Long tiempoTranscurrido = System.currentTimeMillis() - entrada;
+		requestLog.setStatusCode(httpServletResponse.getStatus());
+		requestLog.setContentType(httpServletResponse.getHeader("Content-Type"));
+		requestLog.setElapsedTime(System.currentTimeMillis() - entrada.getTime());
 		
-		System.err.println("REQUEST: " + method + " " + ip + " " + path   + " RESPONSE: " + httpServletResponse.getStatus() + " " + tiempoTranscurrido);
+		requestLogServices.create(requestLog);
 		
 	}
-	
-	//               REQUEST                                        RESPUESTA
-	// ID      TIMESTAMP   VERBO      IP       RECURSO      STATUS_CODE TIEMPO_RESPUESTA
-	// 10      129344355    GET  10.250.2.3   /productos        200           34
-	// 11      129344399    GET  10.250.2.5   /productos/45     404           17
-	//
 	
 }
