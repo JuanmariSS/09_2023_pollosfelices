@@ -5,11 +5,11 @@
 
 ## _Para acceder a Swagger_ ##
 
-- http://localhost:8080/swagger-ui.html
+- /swagger-ui.html
 
 ## _Para acceder a la consola de H2_ ##
 
-- http://localhost:8080/h2-console
+- /h2-console
 
 ## _Dependencias de JSP_ ##
 		
@@ -24,5 +24,9 @@
 ## _Ubicación páginas JSP_ ##
 
 src/main/webapp/WEB-INF/vistas	
+
+## URL Acceso a página de Logs ##
+
+- /auditoria/logs
 
 

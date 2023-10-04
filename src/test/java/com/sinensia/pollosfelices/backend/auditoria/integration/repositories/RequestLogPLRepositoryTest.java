@@ -42,10 +42,12 @@ public class RequestLogPLRepositoryTest {
 		
 		List<RequestLogPL> logsEsperados = Arrays.asList(requestLog1, requestLog2);
 		
-		List<RequestLogPL> logs = requestLogPLRepository.findByTimeStampBetween(desde, hasta);
+		List<RequestLogPL> logs = requestLogPLRepository.findByTimeStampBetweenOrderByTimeStampDesc(desde, hasta);
 		
 		assertEquals(2, logs.size());
 		assertTrue(logs.containsAll(logsEsperados));
+		
+		//TODO Importante! Asegurarnos que vienen en un orden descendente.
 		
 	}
 }

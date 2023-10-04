@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +49,7 @@ public class RequestLogServicesImpl implements RequestLogServices{
 	@Override
 	public List<RequestLog> getAll() {
 		
-		return requestLogPLRepository.findAll().stream()
+		return requestLogPLRepository.findAll(Sort.by("timeStamp").descending()).stream()
 				.map(x -> mapper.map(x, RequestLog.class))
 				.collect(Collectors.toList());
 	}
@@ -56,7 +57,7 @@ public class RequestLogServicesImpl implements RequestLogServices{
 	@Override
 	public List<RequestLog> getBetweenDates(Date desde, Date hasta) {
 		
-		return requestLogPLRepository.findByTimeStampBetween(desde, hasta).stream()
+		return requestLogPLRepository.findByTimeStampBetweenOrderByTimeStampDesc(desde, hasta).stream()
 				.map(x -> mapper.map(x, RequestLog.class))
 				.collect(Collectors.toList());
 	}

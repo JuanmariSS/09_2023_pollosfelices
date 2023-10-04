@@ -11,5 +11,5 @@ import com.sinensia.pollosfelices.backend.auditoria.integration.model.RequestLog
 @Repository
 public interface RequestLogPLRepository extends JpaRepository<RequestLogPL, Long>{
 
-	List<RequestLogPL> findByTimeStampBetween(Date desde, Date hasta);
+	List<RequestLogPL> findByTimeStampBetweenOrderByTimeStampDesc(Date desde, Date hasta);
 }
