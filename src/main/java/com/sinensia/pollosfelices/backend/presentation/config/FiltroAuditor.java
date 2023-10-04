@@ -38,7 +38,7 @@ public class FiltroAuditor implements Filter {
 		RequestLog requestLog = new RequestLog();
 		requestLog.setTimeStamp(entrada);
 		requestLog.setIp(httpServletRequest.getRemoteAddr());
-		requestLog.setResource(httpServletRequest.getRequestURL().toString());
+		requestLog.setResource(httpServletRequest.getRequestURI().toString());
 		requestLog.setMethod(httpServletRequest.getMethod());
 		
 		requestLog.setStatusCode(httpServletResponse.getStatus());

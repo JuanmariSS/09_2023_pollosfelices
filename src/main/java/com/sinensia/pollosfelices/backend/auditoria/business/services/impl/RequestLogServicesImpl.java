@@ -20,7 +20,7 @@ public class RequestLogServicesImpl implements RequestLogServices{
 
 	@Autowired
 	private RequestLogPLRepository requestLogPLRepository;
-	
+		
 	@Autowired
 	private DozerBeanMapper mapper;
 		
