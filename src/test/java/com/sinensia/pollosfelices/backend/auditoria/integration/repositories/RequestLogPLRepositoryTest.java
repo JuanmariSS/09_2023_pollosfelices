@@ -46,8 +46,7 @@ public class RequestLogPLRepositoryTest {
 		
 		assertEquals(2, logs.size());
 		assertTrue(logs.containsAll(logsEsperados));
-		
-		//TODO Importante! Asegurarnos que vienen en un orden descendente.
+		assertEquals(requestLog2, logs.get(0));
 		
 	}
 }

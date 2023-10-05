@@ -38,11 +38,6 @@
 					</td>
 					<td>${log.contentType}</td>
 					<td style="text-align: right;">${log.elapsedTime}</td>
-					<!--  
-					<td>
-						<c:if test="${producto.descatalogado}"><span style="color:red;">descatalogado</span></c:if>
-					</td>
-					-->
 				</tr>
 				</c:forEach>
 			</tbody>
