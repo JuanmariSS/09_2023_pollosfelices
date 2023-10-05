@@ -16,11 +16,12 @@
 					<th>Id</th>
 					<th>Fecha</th>
 					<th>Hora</th>
+					<th>IP</th>
 					<th>Method</th>
 					<th>Resource</th>
 					<th>Status Code</th>
 					<th>Content-Type</th>
-					<th>Elapsed Time</th>
+					<th style="text-align:right;">Elapsed Time</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,6 +30,7 @@
 					<td>${log.id}</td>
 					<td><fmt:formatDate pattern="dd/MM/yyyy" value="${log.timeStamp}"/></td>
 					<td><fmt:formatDate pattern="HH:mm:ss" value="${log.timeStamp}"/></td>
+					<td>${log.ip}</td>
 					<td>${log.method}</td>
 					<td>${log.resource}</td>
 					<td>

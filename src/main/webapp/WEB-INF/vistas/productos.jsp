@@ -10,6 +10,9 @@
 	<div class="container-fluid">
 		<jsp:include page="header.jsp"/>
 		<h2>Lista de Productos</h2>
+		<c:if test="${texto != ''}">
+		<p>Productos filtrados por nombre: "<span style="color:blue;">${texto}</span>"</p>
+		</c:if>
 		<table class="table">
 			<thead>
 				<tr>

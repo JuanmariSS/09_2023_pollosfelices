@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +29,10 @@
 			</tr>
 			<tr>
 				<th>Descatalogado</th>
-				<td>${producto.descatalogado}</td>
+				<td>
+					<c:if test="${producto.descatalogado}"><span style="color:red;">SI</span></c:if>
+					<c:if test="${!producto.descatalogado}"><span style="color:green;">NO</span></c:if>
+				</td>
 			</tr>
 			<tr>
 				<th>Descripción</th>
@@ -35,7 +40,7 @@
 			</tr>
 			<tr>
 				<th>Fecha de Alta</th>
-				<td>${producto.fechaAlta}</td>
+				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${producto.fechaAlta}"/></td>
 			</tr>
 		</table>
 	</div>

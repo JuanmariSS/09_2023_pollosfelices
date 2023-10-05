@@ -3,9 +3,9 @@
 	<h1>Pollos Felices</h1>
 	<ul>
 		<li><a href="home">home</a></li>
-		<li><a href="productos">productos</a></li>
-		<li><a href="">establecimientos</a></li>
-		<li><a href="">camareros</a></li>
+		<li><a href="formulario-filtro">listado de productos</a></li>
+		<li><a href="establecimientos">listado de establecimientos</a></li>
+		<li><a href="camareros">camareros</a></li>
 	</ul>
 </nav>
 <hr>
