@@ -1,0 +1,13 @@
+1.- Definir el modelo que corresponde a la fila (Pedido1DTO)
+2.- Incorporar el nuevo servicio de business en el interface que corresponda (PedidoServices)
+3.- Implementar el //TODO del nuevo método en PedidoServicesImpl
+
+	- Para ello necesitaremos (probablemente) una nueva @Query en el repositorio
+	
+// STOP! No avanzamos hasta los siguientes puntos hasta que no hagamos testeado capas de integración/business 	
+	
+4.- Crear la página JSP que "pinta" la tabla de datos con su correspondiente controlador
+5.- Crear un end-point para obtener esta información en forma de JSON en nuestra API REST
+
+// Testear nuestro controlador REST
+// Testear nuesro controlador MVC (el de la página JSP) OPCIONAL!!!!!
