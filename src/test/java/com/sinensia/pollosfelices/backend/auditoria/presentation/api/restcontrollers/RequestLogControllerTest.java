@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -24,10 +26,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sinensia.pollosfelices.backend.auditoria.business.model.RequestLog;
 import com.sinensia.pollosfelices.backend.auditoria.business.services.RequestLogServices;
+import com.sinensia.pollosfelices.backend.presentation.config.FiltroAuditor;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
 import com.sinensia.pollosfelices.config.TestConfig;
 
-@WebMvcTest(controllers=RequestLogController.class)
+@WebMvcTest(controllers=RequestLogController.class,
+            excludeFilters=@ComponentScan.Filter(classes=FiltroAuditor.class, type=FilterType.ASSIGNABLE_TYPE))
 @Import(TestConfig.class)
 public class RequestLogControllerTest {
 

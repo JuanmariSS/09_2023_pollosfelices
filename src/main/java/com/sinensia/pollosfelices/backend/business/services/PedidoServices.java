@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.sinensia.pollosfelices.backend.business.model.Pedido;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Pedido1DTO;
 
 public interface PedidoServices {
 
@@ -50,5 +51,7 @@ public interface PedidoServices {
 	 * 
 	 */
 	void cancelar(Long numero);
+	
+	List<Pedido1DTO> getAllPedido1DTO();
 	
 }

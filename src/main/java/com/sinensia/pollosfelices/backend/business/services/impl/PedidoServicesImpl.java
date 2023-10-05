@@ -1,5 +1,6 @@
 package com.sinensia.pollosfelices.backend.business.services.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sinensia.pollosfelices.backend.business.model.EstadoPedido;
 import com.sinensia.pollosfelices.backend.business.model.Pedido;
+import com.sinensia.pollosfelices.backend.business.model.dtos.Pedido1DTO;
 import com.sinensia.pollosfelices.backend.business.services.PedidoServices;
 import com.sinensia.pollosfelices.backend.integration.model.EstadoPedidoPL;
 import com.sinensia.pollosfelices.backend.integration.model.PedidoPL;
@@ -142,6 +144,27 @@ public class PedidoServicesImpl implements PedidoServices {
 		
 	}
 	
+	@Override
+	public List<Pedido1DTO> getAllPedido1DTO() {
+		
+		return pedidoPLRepository.findPedido1DTO().stream()
+				.map(x -> {
+					
+					Pedido1DTO pedido1DTO = new Pedido1DTO();
+					
+					pedido1DTO.setNumero(           (Long) x[0]);
+					pedido1DTO.setFecha(            (Date) x[1]);
+					pedido1DTO.setEstablecimiento((String) x[2]);
+					pedido1DTO.setNombreCamarero( (String) x[3]);
+					pedido1DTO.setNombreCliente(  (String) x[4]);
+					pedido1DTO.setNumeroLineas(  (Integer) x[5]);
+					pedido1DTO.setEstado(((EstadoPedidoPL) x[6]).toString());
+					
+					return pedido1DTO;})
+				
+				.collect(Collectors.toList());	
+	}
+	
 	// *********************************************************
 	//
 	// Private Methods
@@ -158,4 +181,5 @@ public class PedidoServicesImpl implements PedidoServices {
 		
 		return optional.get();
 	}
+
 }

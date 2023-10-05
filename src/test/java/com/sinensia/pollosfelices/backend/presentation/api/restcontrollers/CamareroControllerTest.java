@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -21,9 +23,12 @@ import com.sinensia.pollosfelices.backend.business.model.Camarero;
 import com.sinensia.pollosfelices.backend.business.model.DatosContacto;
 import com.sinensia.pollosfelices.backend.business.model.Direccion;
 import com.sinensia.pollosfelices.backend.business.services.CamareroServices;
+import com.sinensia.pollosfelices.backend.presentation.config.FiltroAuditor;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
 
-@WebMvcTest(controllers=CamareroController.class)
+@WebMvcTest(value=CamareroController.class, 
+			excludeFilters=@ComponentScan.Filter(classes=FiltroAuditor.class, 
+			                                     type=FilterType.ASSIGNABLE_TYPE))
 public class CamareroControllerTest {
 
 	@Autowired
@@ -51,6 +56,7 @@ public class CamareroControllerTest {
 		when(camareroServices.create(nuevoCamarero)).thenReturn(10000L);
 		
 		String requestBody = objectMapper.writeValueAsString(nuevoCamarero);
+		
 		
 		miniPostman.perform(post("/camareros").content(requestBody).contentType("application/json"))
 								.andExpect(status().isCreated())

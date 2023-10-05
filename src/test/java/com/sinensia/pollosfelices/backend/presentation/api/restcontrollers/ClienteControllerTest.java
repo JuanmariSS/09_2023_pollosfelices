@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -23,9 +25,12 @@ import com.sinensia.pollosfelices.backend.business.model.Cliente;
 import com.sinensia.pollosfelices.backend.business.model.DatosContacto;
 import com.sinensia.pollosfelices.backend.business.model.Direccion;
 import com.sinensia.pollosfelices.backend.business.services.ClienteServices;
+import com.sinensia.pollosfelices.backend.presentation.config.FiltroAuditor;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
 
-@WebMvcTest(controllers=ClienteController.class)
+@WebMvcTest(controllers=ClienteController.class, 
+    		excludeFilters=@ComponentScan.Filter(classes=FiltroAuditor.class, 
+                                                 type=FilterType.ASSIGNABLE_TYPE))
 public class ClienteControllerTest {
 
 	@Autowired
