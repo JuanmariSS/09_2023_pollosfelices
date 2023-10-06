@@ -1,0 +1,12 @@
+1.- Dar de alta establecimientos (rehacer el header del sistema de navegación)
+
+2.- Dar de alta productos (rehacer el header del sistema de navegación)
+
+	- aquí tendremos que suministrar al formulario del JSP un List<Categoria> para aliementar un selector
+	- aquí tendremos que utilizar un date-picker para la fecha de alta
+	- aquí tendremos que utilizar un number para el precio
+	- aquí tendremos que utilizar un textArea para la descripción
+	- aquí tendremos que utilizar un checkbox para descatalogado
+	
+3.- Testear un controlador MVC! (ADVANCED!!!)
+

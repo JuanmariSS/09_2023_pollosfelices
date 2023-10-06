@@ -26,9 +26,7 @@ import com.sinensia.pollosfelices.backend.business.services.CamareroServices;
 import com.sinensia.pollosfelices.backend.presentation.config.FiltroAuditor;
 import com.sinensia.pollosfelices.backend.presentation.config.RespuestaErrorHttp;
 
-@WebMvcTest(value=CamareroController.class, 
-			excludeFilters=@ComponentScan.Filter(classes=FiltroAuditor.class, 
-			                                     type=FilterType.ASSIGNABLE_TYPE))
+@WebMvcTest(value=CamareroController.class, excludeFilters=@ComponentScan.Filter(classes=FiltroAuditor.class, type=FilterType.ASSIGNABLE_TYPE)) 
 public class CamareroControllerTest {
 
 	@Autowired
@@ -36,7 +34,7 @@ public class CamareroControllerTest {
 	
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+		
 	@MockBean
 	private CamareroServices camareroServices;
 	
