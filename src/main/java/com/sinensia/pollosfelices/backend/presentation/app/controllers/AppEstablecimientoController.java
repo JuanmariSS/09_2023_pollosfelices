@@ -24,5 +24,4 @@ public class AppEstablecimientoController {
 		return mav;
 	}
 	
-	
 }
